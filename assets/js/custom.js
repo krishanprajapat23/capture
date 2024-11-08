@@ -44,9 +44,13 @@ if(wow){
 var sliderThumbs = new Swiper(".gallery-thumbs", {
   slidesPerView: 2,
   loop: true,
-  centerterSlides:true,
-  freeMode: true,
   watchSlidesProgress: true,
+  breakpoints: {
+    992: {
+      freeMode: true,
+      centerterSlides:true,
+    }
+  }
 });
 
 
@@ -86,6 +90,7 @@ var sliderHome = new Swiper(".slideSwiper", {
    // Initialize Swiper without loop
 let swiper = new Swiper('.expertiseSlider', {
     slidesPerView: 1,
+    spaceBetween: 20,
     lazy: true,
     loop: true,
     watchSlidesProgress: true, // Track slide progress for lazy loading
@@ -94,8 +99,7 @@ let swiper = new Swiper('.expertiseSlider', {
       prevEl: '.swiper-button-prev',
     },
     breakpoints: {
-      991: {
-        spaceBetween: 20,
+      992: {        
         slidesPerView: 1.25,
       }
     }
