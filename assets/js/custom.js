@@ -39,6 +39,8 @@ if(wow){
 //   // },
 // });
 
+
+//============================================================ hero slider ============================================================
 var sliderThumbs = new Swiper(".gallery-thumbs", {
   slidesPerView: 2,
   loop: true,
@@ -76,6 +78,63 @@ var sliderHome = new Swiper(".slideSwiper", {
 // sliderHome.controller.control = sliderThumbs;
 // sliderThumbs.controller.control = sliderHome;
 
+//============================================================ hero slider ============================================================
+
+
+
+//============================================================ expertise slider ============================================================
+   // Initialize Swiper without loop
+let swiper = new Swiper('.expertiseSlider', {
+    slidesPerView: 1,
+    lazy: true,
+    loop: true,
+    watchSlidesProgress: true, // Track slide progress for lazy loading
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      991: {
+        spaceBetween: 20,
+        slidesPerView: 1.25,
+      }
+    }
+});
+
+// Custom Nav Buttons
+let expertiseNavs = document.querySelectorAll('.exp-slide-nav');
+
+expertiseNavs.forEach((nav, index) => {
+    nav.addEventListener('click', () => {
+        swiper.loopDestroy(); // Disable loop temporarily
+        // Navigate to the respective slide
+        swiper.slideTo(index); 
+
+        // Highlight active button
+        expertiseNavs.forEach((nav) => nav.classList.remove('active'));
+        nav.classList.add('active'); // Add active class to the clicked button
+        
+        // Re-enable loop after a short delay to ensure smooth slide transition
+        setTimeout(() => {
+          swiper.loopCreate(); // Re-enable loop
+        }, 300); // Wait for 300ms (or match the transition duration)
+    });
+});
+
+// Sync the active nav button with the Swiper active slide
+swiper.on('slideChange', () => {
+    const activeIndex = swiper.realIndex;
+    expertiseNavs.forEach((nav, index) => {
+        nav.classList.remove('active');
+        if (index === activeIndex) {
+            nav.classList.add('active');
+        }
+    });
+});
+
+// Set the initial active state for the first button
+expertiseNavs[swiper.realIndex].classList.add('active');
+// ============================================================ expertise slider ============================================================
 
 //slick slider
 $(".slick_slider").slick({
